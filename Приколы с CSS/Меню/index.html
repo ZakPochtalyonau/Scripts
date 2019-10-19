@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script>
+            
+            function menu_do() {
+                let menu = document.querySelector('.menu');
+                let test = menu.style; 
+               menu.classList.toggle('.menu-active');       
+                console.log(menu.getAttribute("style"));
+                
+                
+            }
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="menu">
+                <a href="#" class="menu-btn" onclick="menu_do()"></a>
+                <nav class="menu-list">
+                    <a href="#">Main</a>
+                    <a href="#">Gain</a>
+                    <a href="#">Rain</a>
+                </nav>
+            </div>
+       
+            <div class="content">
+                <section class="main-section">
+                    <h2>Main</h2>
+                </section>
+                <section class="gain-section">
+                    <h2>Gain</h2>
+                </section>
+                <section class="rain-section">
+                    <h2>Rain</h2>
+                </section>
+            </div> 
+        </div>
+    </body>
+</html>
