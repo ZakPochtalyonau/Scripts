@@ -82,7 +82,7 @@ function createMouse(){
     mouse=document.querySelector('[posX="'+mouseCoordinates[0]+'"][posY="'+mouseCoordinates[1]+'"]'); 
     
 
-     while(mouse.classList.contains("snakebody")){
+     while(mouse.classList.contains("snakebody")&mouse.classList.contains('head')){
         let mouseCoordinates = generateMouse();
         mouse=document.querySelector('[posX="'+mouseCoordinates[0]+'"][posY="'+mouseCoordinates[1]+'"]'); 
     }   
@@ -108,7 +108,7 @@ function move(){
         if(snakeCoordinates[0]>1){
             snakeBody.unshift(document.querySelector('[posX="'+(+snakeCoordinates[0]-1)+'"][posY="'+snakeCoordinates[1]+'"]'));
         }else{
-            snakeCoordinates[0]=10;
+            snakeCoordinates[0]=11;
             snakeBody.unshift(document.querySelector('[posX="'+(+snakeCoordinates[0]-1)+'"][posY="'+snakeCoordinates[1]+'"]'));
         }  
         
@@ -124,7 +124,7 @@ function move(){
         if(snakeCoordinates[1]>1){
             snakeBody.unshift(document.querySelector('[posX="'+snakeCoordinates[0]+'"][posY="'+(+snakeCoordinates[1]-1)+'"]'));
         }else{
-            snakeCoordinates[1]=10;
+            snakeCoordinates[1]=11;
             snakeBody.unshift(document.querySelector('[posX="'+(+snakeCoordinates[0])+'"][posY="'+(+snakeCoordinates[1]-1)+'"]'));
         }  
         

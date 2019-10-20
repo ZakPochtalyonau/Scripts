@@ -6,8 +6,9 @@
             
             function menu_do() {
                 let menu = document.querySelector('.menu');
-                let test = menu.style; 
-               menu.classList.toggle('.menu-active');       
+                let test = document.querySelector('.content'); 
+               menu.classList.toggle('menu-active'); 
+               test.classList.toggle('content-active');       
                 console.log(menu.getAttribute("style"));
                 
                 
@@ -19,20 +20,32 @@
             <div class="menu">
                 <a href="#" class="menu-btn" onclick="menu_do()"></a>
                 <nav class="menu-list">
-                    <a href="#">Main</a>
-                    <a href="#">Gain</a>
-                    <a href="#">Rain</a>
+                    <div class="wrap-a">
+                        <a class = "front" href="#main">Main</a>
+                        <a class = "back" href="#main">Main</a>
+                    </div>
+                    <div class="wrap-a">
+                        <a class = "front" href="#gain">Gain</a>
+                        <a class = "back" href="#gain">Gain</a>
+                    </div>
+                    <div class="wrap-a">
+                        <a class = "front" href="#rain">Rain</a>
+                        <a class = "back" href="#rain">Rain</a>
+                    </div>
                 </nav>
             </div>
        
             <div class="content">
                 <section class="main-section">
+                    <a class="section-top" name="main"></a>
                     <h2>Main</h2>
                 </section>
                 <section class="gain-section">
+                    <a class="section-top" name="gain"></a>
                     <h2>Gain</h2>
                 </section>
                 <section class="rain-section">
+                    <a  class="section-top" name="rain"></a>
                     <h2>Rain</h2>
                 </section>
             </div> 

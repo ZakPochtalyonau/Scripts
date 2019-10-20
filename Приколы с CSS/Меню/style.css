@@ -1,13 +1,17 @@
 body{
     margin: 0;
 }
+
 section{
+    position: relative;
     height: 100vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0;
     padding: 0;
+    perspective: 1000px;
 }
 
 .main-section{
@@ -34,6 +38,7 @@ section{
     position: fixed;
     left: 0; 
     top: 0;
+    z-index: 99;
     width: 30%;
     height: 100vh;
     display: flex;
@@ -45,8 +50,9 @@ section{
     }
 .menu-active{
         transform: translateX(0); 
-        }
+    }
 .menu-list{
+    position: relative;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -56,9 +62,9 @@ section{
 .menu-list a{
     text-decoration: none;
     text-transform: uppercase;
+    
     font-weight: 900;
-    height: 30vh;
-    color: #000000;
+     color: #000000;
 }
 .menu-btn{
     height: 30px;
@@ -67,4 +73,42 @@ section{
     position: absolute;
     right: -35px;
     top: 5px; 
+   
 }
+.content{
+    position: relative;
+    z-index: 0;
+    transition: 1s;
+}
+.content-active{
+    transform: translateX(30%);
+}
+.section-top{
+    position: absolute;
+    top:0;
+}
+.wrap-a{
+    position: relative;
+    width: 100%;
+    height: 30%;
+    background-color: #000000;
+}
+.front,.back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 1s;
+    backface-visibility: hidden;
+}
+.back{
+    background-color: #000000; 
+    transform: rotateY(180deg);
+}
+.wrap-a:hover .front{transform: rotateY(180deg);}
+.wrap-a:hover .back{transform: rotateY(0deg);}
