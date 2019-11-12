@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="navigation">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Works</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+        <p>
+            Статья́ — это жанр журналистики, в 
+            котором автор ставит задачу проанализировать 
+            общественные ситуации, процессы, явления, прежде 
+            всего с точки зрения закономерностей, лежащих в их основе.
+        </p>
+        <script type="text/javascript">
+            let nav =document.getElementsByClassName("navigation");
+
+            window.onscroll = function stiky(){
+                if(window.pageYOffset>nav[0].offsetTop){
+                    nav[0].classList.add("nav");
+                }else{
+                    nav[0].classList.remove("nav");
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <section>
+            <h2>Click and hold Effects</h2>
+            <p>Допустим, вы уже перешагнули уровень Elementary и оказались на шаг ближе к своей цели — свободно общаться на английском языке. На каком же уровне вы оказались? Правильно! Это уровень A2 Pre-Intermediate или подготовительный средний уровень. В таблице CEFR он занимает почетное третье место и продвигает вас ближе к совершенству. Ну что ж, приступим, ladies and gentlemen!</p>
+            <div id="cursor"></div>
+        </section>
+        <script type="text/javascript">
+            let cursor = document.getElementById('cursor');
+            window.onmousemove=function(e){
+                let x = e.clientX;
+                let y = e.clientY;
+                cursor.style.left=x+'px';
+                cursor.style.top=y+'px';
+            }
+        </script>
+    </body>
+</html>

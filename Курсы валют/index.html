@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="case_for_case" id="case_for_case">
+            <div class="input_case" id="first_input_case">
+                <div class="val_trase"> 
+                    <select class="selectors" name="CurID" id="">
+                        <option value="0" class="">--Выбор валюты--</option>
+                        <option value="BY">BY</option>
+                    </select>
+                    <input type="number" class="input" name="Cur">
+                </div>
+               <div class="val_afte_transe">
+                    <div class="one_input_case">
+                        <select class="selectors" name="CurID" id="">
+                            <option value="0">--Выбор валюты--</option>
+                            <option value="BY">BY</option>
+                        </select>
+                        <input type="number" class="input" name="Cur">
+                    </div>
+                    <div class="two_input_case">
+                        <select class="selectors" name="CurID" id="">
+                            <option value="0">--Выбор валюты--</option>
+                            <option value="BY">BY</option>                            
+                        </select>
+                        <input type="number" class="input" name="Cur">
+                    </div>
+                    <div class="three_input_case">
+                        <select class="selectors" name="CurID" id="">
+                            <option value="0">--Выбор валюты--</option>
+                            <option value="BY">BY</option>
+                        </select>
+                        <input type="number" class="input" name="Cur">
+                    </div>
+                    
+               </div>
+        </div>
+        </div>
+        
+        
+        <div class="button">
+                <button class="button_convert" onclick="ConvertValue()">Конвертировать</button>
+                <button class="button_add" onclick="AddInput()">Добавить валюту</button>
+        </div>
+       
+    </div>
+</body>
+</html>
