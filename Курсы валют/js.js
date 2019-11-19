@@ -3,16 +3,20 @@ let Valuta2=[];
 let Curse;
 let Scale;
 let OfficialRate;
+let Dinamic;
+//select.addEventListener('change', ConvertValue);
+document.addEventListener('change', function(event) {
+  let selector = event.target.closest('select'); 
+  if (!selector) return; 
+   ConvertValue(); 
+});
 
 $(document).ready(function(){
     
-    $(".selector_fist").change(function(e){
-    Valuta1.push(e.target.options[e.target.selectedIndex].value);
-  });
-    $(".selector_second").change(function(e){
-      Valuta2.push(e.target.options[e.target.selectedIndex].value);
-    });
-    //ajaxRecuest(test);
+  //   $(".selectors").change(function(){
+  //     ConvertValue();
+  // });
+    ajaxDinamic();
     ajaxRecuest();
     //AddOption();
 });
@@ -26,6 +30,15 @@ function ajaxRecuest(){
          AddOption();
         }
       });
+}
+function ajaxDinamic(){
+  $.ajax({
+    url: "http://www.nbrb.by/API/ExRates/Rates/Dynamics/190?startDate=2016-6-1&endDate=2016-6-30 ", // адрес, на который будет отправлен запрос        
+    success: function(e){ // если запрос успешен вызываем функци           
+     Dinamic= e; // добавлем текстовое содержимое в элемент с классом .myClass
+     console.log(e);
+    }
+  });
 }
 function ConvertValue(){
   let sel = document.getElementsByClassName('selectors'); 
