@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+  <input id="Start_Date" onBlur="GetDate()" type="date"/>
+  <input id="End_Date" onBlur="GetDate()" type="date"/>
+
+  <div id='chart_div' style='width: 900px; height: 500px;'></div>
+    <script>
+        let Dinamic;
+        function GetDate(){
+          let Start_Date=document.getElementById('Start_Date');
+          console.log(Start_Date.value);
+          let End_Date=document.getElementById('End_Date');
+          if(Start_Date.value!="" && End_Date.value!=""){
+            ajaxDinamic(Start_Date.value,End_Date.value,MyCallback());
+            
+          }
+        }
+       function MyCallback(){
+            google.charts.load('current', {'packages':['annotationchart']});
+            google.charts.setOnLoadCallback(drawChart);
+       }
+        
+        
+        
+        function ajaxDinamic(Formated_Start_Date,Formated_End_Date){
+            $.ajax({
+            url: "http://www.nbrb.by/API/ExRates/Rates/Dynamics/293?startDate="+Formated_Start_Date+"&endDate="+Formated_End_Date, // адрес, на который будет отправлен запрос        
+            success: function(e){ // если запрос успешен вызываем функци           
+            Dinamic= e; // добавлем текстовое содержимое в элемент с классом .myClass
+             console.log(e);
+            }
+        });
+    }
+       
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Date');
+        data.addColumn('number', 'Динамика Курса');
+        data.addColumn('string', 'Kepler title');
+        let temp_arraw=[];
+        for(let i=0;i<Dinamic.length;i++){
+          let a=[new Date(Dinamic[i].Date),Dinamic[i].Cur_OfficialRate, 'Курс за']
+            temp_arraw.push(a);
+        }
+        data.addRows(temp_arraw);
+
+        var chart = new google.visualization.AnnotationChart(document.getElementById('chart_div'));
+
+        var options = {
+          displayAnnotations: true
+        };
+
+        chart.draw(data, options);
+      }
+    </script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+
 let Valuta1=[];
 let Valuta2=[];
 let Curse;
@@ -102,3 +103,6 @@ function AddInput(){
   case_for_case.append(div2);
   console.log("aaa");
 }
+
+
+// Рисование динамики курса
