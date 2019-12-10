@@ -6,21 +6,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>Dinamic</title>
 </head>
 <body>
   <input id="Start_Date" onBlur="GetDate()" type="date"/>
   <input id="End_Date" onBlur="GetDate()" type="date"/>
-
+  <select class="" onBlur="GetDate()" name="CurID" id="Cur_ID">
+    <option value="0">--Выбор валюты--</option>
+    <option value="BY">Белорусский рубль</option>
+  </select>
   <div id='chart_div' style='width: 900px; height: 500px;'></div>
     <script>
         let Dinamic;
+        let Curse=[];
+        let select_cur=document.getElementById('Cur_ID');
+        $(document).ready(function(){
+          ajaxRecuest();
+      });
+  
         function GetDate(){
           let Start_Date=document.getElementById('Start_Date');
           console.log(Start_Date.value);
           let End_Date=document.getElementById('End_Date');
           if(Start_Date.value!="" && End_Date.value!=""){
-            ajaxDinamic(Start_Date.value,End_Date.value,MyCallback());
+            ajaxDinamic(select_cur.value,Start_Date.value,End_Date.value,MyCallback());
             
           }
         }
@@ -31,9 +40,9 @@
         
         
         
-        function ajaxDinamic(Formated_Start_Date,Formated_End_Date){
+        function ajaxDinamic(ID,Formated_Start_Date,Formated_End_Date){
             $.ajax({
-            url: "http://www.nbrb.by/API/ExRates/Rates/Dynamics/293?startDate="+Formated_Start_Date+"&endDate="+Formated_End_Date, // адрес, на который будет отправлен запрос        
+            url: "http://www.nbrb.by/API/ExRates/Rates/Dynamics/"+ID+"?startDate="+Formated_Start_Date+"&endDate="+Formated_End_Date, // адрес, на который будет отправлен запрос        
             success: function(e){ // если запрос успешен вызываем функци           
             Dinamic= e; // добавлем текстовое содержимое в элемент с классом .myClass
              console.log(e);
@@ -41,7 +50,25 @@
         });
     }
        
-
+    function ajaxRecuest(){
+      $.ajax({
+        url: "http://www.nbrb.by/API/ExRates/Rates?Periodicity=0", // адрес, на который будет отправлен запрос        
+        success: function(e){ // если запрос успешен вызываем функци           
+         Curse= e; // добавлем текстовое содержимое в элемент с классом .myClass
+         console.log(e);
+         AddOption();
+        }
+      });
+    }
+    function AddOption(){
+      let sel = document.getElementById('Cur_ID'); 
+      console.log(sel);
+       for(let j=0;j<Curse.length;j++){
+        let op = new Option(Curse[j].Cur_Name, Curse[j].Cur_ID);
+        sel.append(op);
+      }
+   
+  }
       function drawChart() {
         var data = new google.visualization.DataTable();
         data.addColumn('date', 'Date');
