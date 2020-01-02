@@ -63,9 +63,19 @@ document.getElementById('game').onclick=function(event){
 }
 function DivHod(NumHod){
     if(NumHod%2==0){
-        document.getElementById('who').innerHTML ='Ходят X';
+       let X = document.getElementById('X');
+       let O = document.getElementById('O');
+       X.classList.add('btn-success');
+       O.classList.remove('btn-success');
+       X.classList.remove('btn-secondary');
+       O.classList.add('btn-secondary');
     }else{
-        document.getElementById('who').innerHTML ='Ходят O';
+        let X = document.getElementById('X');
+        let O = document.getElementById('O');
+        O.classList.add('btn-success');
+        X.classList.remove('btn-success');
+        O.classList.remove('btn-secondary');
+        X.classList.add('btn-secondary');
     }
 }
 function checkWinnerYline(NumHod,posX){
@@ -172,10 +182,14 @@ function checkWinnerDiagRight(NumHod,posX,posY){
 
 function WhoWiner(NumHod){
     if(NumHod%2==1){
-        document.getElementById('who').innerHTML ='';
-        document.getElementById('who').innerHTML ='Победа X';
+        
+        setTimeout(()=>{
+            alert('Победили Х');
+        },10);   
     }else{
-        document.getElementById('who').innerHTML ='';
-        document.getElementById('who').innerHTML ='Победа O';
+        setTimeout(()=>{
+            alert('Победили О');
+        },10);  
     }
+    location.reload();
 }
