@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Chat</title>
+    <script ></script>
+</head>
+<body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+        <h5 class="my-0 mr-md-auto font-weight-normal">My Chat</h5>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <a class="p-2 text-dark" href="#">Это</a>
+          <a class="p-2 text-dark" href="#">Просто</a>
+          <a class="p-2 text-dark" href="#">Чтоб</a>
+          <a class="p-2 text-dark" href="#">Красиво</a>
+        </nav>
+        <a class="btn btn-outline-primary" href="#">Упс)</a>
+      </div>
+    <div class="container">
+        
+            <div class="row">
+                <div class="col">
+                   <h3>Все сообщения</h3>
+                   <div id="allMessage" class="border border-info " style="width: 100%; height: 50vh"> </div>
+                </div>
+            </div>
+            <div class="row"> 
+                <div class="col">
+                    <form id="messForm" action="">
+                        <label for="name">Имя</label>
+                        <textarea name="name" id="name" class="form-control" placeholder="Введите"></textarea>
+                        <label for="message">Сообщение</label>
+                        <textarea name="message" id="message" class="form-control" placeholder="Введите"></textarea>
+                        <input type="submit" value="Отправить" class="btn btn-danger" style="margin-top: 5px;"></input>
+                    </form>
+                </div>
+                
+            </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script  src = "/socket.io/socket.io.js"></script>
+    <script>
+        $(function(){
+        let  $form = $("#messForm");
+        let  $text = $("#message");
+        let  $name = $("#name");
+        let $all_messages=$("#allMessage");
+        let socket = io.connect();
+
+        $form.submit(function(event){
+            event.preventDefault();
+            if($text.val()!='' && $name.val()!=''){
+                socket.emit('send mess', {name: $name.val(), msg: $text.val()});
+                $text.val('');
+            }
+           
+        });
+        socket.on('New mess',function (data) {
+            $all_messages.append(`<div>
+                <b>${data.name}:</b>
+                <br /> &nbsp; ${data.msg}
+                 </div>`);
+        });
+        socket.on('Old mess',function (data) {
+            $all_messages.append(`<div>
+                &nbsp; ${data.msg}
+                 </div>`);
+        });
+        });
+        
+    </script>
+    
+</body>
+</html>
